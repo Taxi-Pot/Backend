@@ -8,6 +8,7 @@ import com.taxipot.backend.domain.concert.repository.ConcertRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,13 +32,15 @@ public class ConcertService {
     public ConcertListResponse getConcertList() {
         List<Concert> concerts = concertRepository.findAll();
 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd a h시");
+
         List<ConcertPreviewResponse> previews = concerts.stream()
                 .sorted(Comparator.comparing(Concert::getDateTime))
                 .map(concert -> new ConcertPreviewResponse(
                         concert.getId(),
                         concert.getImage(),
                         concert.getTitle(),
-                        concert.getDateTime().toString()
+                        concert.getDateTime().format(formatter)
                 ))
                 .collect(Collectors.toList());
 
