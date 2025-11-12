@@ -19,13 +19,17 @@ public class Concert extends BaseEntity {
     private Long id;
 
     @Column(nullable = false)
+    private String image;
+
+    @Column(nullable = false)
     private String title;
 
     @Column(name = "date_time", nullable = false)
     private LocalDateTime dateTime;
 
     @Builder
-    public Concert(String title, LocalDateTime dateTime) {
+    public Concert(String image, String title, LocalDateTime dateTime) {
+        this.image = image;
         this.title = title;
         this.dateTime = dateTime;
     }

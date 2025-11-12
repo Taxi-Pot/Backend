@@ -24,5 +24,6 @@ spring:
 
 
 logging.level:
-  org.hibernate.SQL: debug
-  org.springframework.web: debug
+  org.hibernate.SQL: INFO
+  org.hibernate.type.descriptor.sql: WARN
+  org.springframework.web: INFO
